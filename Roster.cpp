@@ -1,5 +1,7 @@
+// Roster.cpp
+// Modified by James Fu, cs32-w22
+// for lab03
 #include "Roster.h"
-
 #include <cstdlib>
 #include <fstream>
 #include <cassert>
@@ -101,8 +103,9 @@ std::string Roster::toString() const {
 }
 
 void Roster::sortByPerm() {
-  // SELECTION SORT
-  // stub does nothing
+  for(int i = numStudents; i > 1; i--){
+    sortByPermHelper(i);
+  }
 }
 
 int Roster::indexOfMaxPermAmongFirstKStudents(int k) const {
@@ -124,12 +127,11 @@ int Roster::indexOfMaxPermAmongFirstKStudents(int k) const {
 
 void Roster::sortByPermHelper(int k) {
   // swaps max perm from [0..k-1] with elem [k-1]
-
-
   int im = indexOfMaxPermAmongFirstKStudents(k);
-
-  // now swap the pointers between index im and index k-1
-
-  // THIS IS STILL A STUB !!!
-  
+  if(im == (k-1)){
+    return;
+  }
+  Student* max = students[im];
+  students[im] = students[k-1];
+  students[k-1] = max;
 }
