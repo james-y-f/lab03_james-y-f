@@ -106,7 +106,20 @@ void Roster::sortByPerm() {
 }
 
 int Roster::indexOfMaxPermAmongFirstKStudents(int k) const {
-  return 0; // STUB
+  if(k > this->numStudents){
+    std::cerr << "invalid k: " << k << 
+    " numStudent is: " << this->numStudents << std::endl;
+  }
+  int max = 0;
+  int maxPerm = students[max]->getPerm();
+  for(int i = 0; i < k; i++){
+    int currentPerm = students[i]->getPerm();
+    if(currentPerm > maxPerm){
+      max = i;
+      maxPerm = currentPerm;
+    }
+  }
+  return max;
 }
 
 void Roster::sortByPermHelper(int k) {
