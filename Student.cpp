@@ -1,12 +1,15 @@
+// Student.cpp
+// Modified by James Fu, cs32-w22
+// for lab03
+
 #include "Student.h"
 #include <sstream>
 #include <string>
 
 Student::Student(int perm, 
 		 std::string lastName, 
-		 std::string firstAndMiddleNames) {
-  // stub
-}
+		 std::string firstAndMiddleNames) 
+        : perm(perm), lastName(lastName), firstAndMiddleNames(firstAndMiddleNames){ }
 
 // construct a Student object from a single line of
 // comma separated text, e.g. "1234567,Smith,Mary Kay"
@@ -30,19 +33,19 @@ Student::Student (std::string csvString) {
 
 
 int Student::getPerm() const { 
-  return -999; // stub
+  return perm;
 }
 
 std::string Student::getLastName() const { 
-  return std::string("Stuberson");
+  return lastName;
 }
 
 std::string Student::getFirstAndMiddleNames() const {
-   return std::string("Stub Toe");
+   return firstAndMiddleNames;
 }
 
 std::string Student::getFullName() const { 
-  return std::string("Stub Toe Stuberson");
+  return (firstAndMiddleNames + " " + lastName);
 }
 
 std::string Student::toString() const { 

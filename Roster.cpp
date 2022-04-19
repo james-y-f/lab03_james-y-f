@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <fstream>
 #include <cassert>
+#include <iostream> // for cout and cerr
 
 Roster::Roster() {
   // initialize to empty array
@@ -71,17 +72,28 @@ void Roster::addStudentsFromStream(std::istream &is) {
 }
 
 int Roster::getNumStudents() const { 
-  return -999; // stub
+  return numStudents;
 }
 
-Student Roster::getStudentAt(int index) const { 
-  return Student(-999,"Stubbi","Stubsdottir"); 
+Student Roster::getStudentAt(int index) const {
+  if( index < 0 || index >= numStudents){
+    std::cerr << "invalid index: " << index
+    << " number of student is: " << numStudents << std::endl;
+    exit(4);
+  } 
+  return *students[index];
 }
 
 std::string Roster::toString() const {
   std::string result = "{\n";
   
-  result += "STUB!!!!";   // @@@ RESTORE THIS 
+  for(int i = 0; i < numStudents; i++){
+    result += students[i]->toString();
+    if(i != numStudents - 1){
+      result += ",";
+    }
+    result += "\n";
+  }
 
   result += "}\n";
   return result;
